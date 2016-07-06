@@ -1,0 +1,14 @@
+{
+  "name": "stevegame",
+  "version": "1.0.0",
+  "description": "command line \"choose your own adventure\" game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steve Keller",
+  "license": "MIT",
+  "dependencies": {
+    "game-prompt": "0.0.3"
+  }
+}

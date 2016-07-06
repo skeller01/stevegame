@@ -54,7 +54,7 @@ function systemSelection(option){
 	if(currentLocation===check){
 		gamePrompt("Sorry Captain, You're already there. I will return you to the main menu to make another choice",beginTravel);
 	}else{
-		if(lower(check) === "e"){
+		if(check.toLowerCase() === "e"){
 
 		}else if(check.toLowerCase() === "m"){
 			vehicleFuel=(vehicleFuel-20);

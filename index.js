@@ -6,6 +6,9 @@ var playerName;
 var vehicleName;
 var vehicleFuel = 1000; 
 var currentLocation ="aa";
+var artifacts = 0; 
+
+//add "visited" trackers to reset the system
 
 //start the game 
 //collecting information and letting the pilot know their fuel levels
@@ -32,7 +35,7 @@ function collectName(name){
 function collectVehicleName(name){
 	vehicleName=name;
 
-	gamePrompt(["Thank you again Captain "+playerName, "Your ship is named "+vehicleName,"This is VERY IMPORTANT, Captain. Your ship has 1000 gallons of fuel"],beginTravel);
+	gamePrompt(["Thank you again Captain "+playerName, "Your ship is named "+vehicleName,"This is VERY IMPORTANT, Captain. Your ship has 1000 gallons of fuel","If you run out of fuel, you'll lose the game!!!","Collect 3 artifacts from around the galaxy and return to earth to win!"],beginTravel);
 
 };
 
@@ -55,28 +58,91 @@ function systemSelection(option){
 		gamePrompt("Sorry Captain, You're already there. I will return you to the main menu to make another choice",beginTravel);
 	}else{
 		if(check.toLowerCase() === "e"){
+			vehicleFuel=(vehicleFuel-10);
+			currentLocation="e" ;
+			gamePrompt("Flying to Earth...You used 10 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToEarth);
 
 		}else if(check.toLowerCase() === "m"){
+			//need to add a 'visited' conditional
 			vehicleFuel=(vehicleFuel-20);
 			currentLocation="m" ;
-			gamePrompt("Flying to Mesnides...You used 20 gallons of gas. The "+ vehicleName +" now has"+vehicleFuel+ " gallons.");
+			gamePrompt("Flying to Mesnides...You used 20 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.", goToMesnides);
 
 		}else if(check.toLowerCase() === "l"){
+			vehicleFuel=(vehicleFuel-50);
+			currentLocation="l" ;
+			gamePrompt("Flying to Laplides...You used 50 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToLaplides);
 			
 		}else if(check.toLowerCase() === "k"){
+			vehicleFuel=(vehicleFuel-120);
+			currentLocation="k" ;
+			gamePrompt("Flying to Kiyturn...You used 120 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToKiyturn);
 			
 		}else if(check.toLowerCase() === "a"){
+			vehicleFuel=(vehicleFuel-25);
+			currentLocation="a" ;
+			gamePrompt("Flying to Aenides...You used 25 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToAenides);
 			
 		}else if(check.toLowerCase() === "c"){
+			vehicleFuel=(vehicleFuel-200);
+			currentLocation="c" ;
+			gamePrompt("Flying to Cramuthea...You used 200 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToCramuthea);
 			
 		}else if(check.toLowerCase() === "s"){
+			vehicleFuel=(vehicleFuel-400);
+			currentLocation="s" ;
+			gamePrompt("Flying to Smeon T9Q...You used 400 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToSmeon);
 			
 		}else if(check.toLowerCase() === "g"){
+			vehicleFuel=(vehicleFuel-85);
+			currentLocation="g" ;
+			gamePrompt("Flying to Gleshan 7Z9...You used 85 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToGleshan);
 			
 		}else{
 			gamePrompt("Sorry Captain, I did not understand you. I will return you to the main menu",beginTravel);
 		}
 	}
+};
+
+
+//+++++++++++++++++++++++++++++++++++++++These are the story functions 
+//***********************************************Mesnides
+//Mesnides variables 
+var visitedMes = 0;
+var artifactMes=0;
+var mesArtifact = 0; 
+var mesPlanet = 0; 
+
+//Mesnides Starter
+function goToMesnides(){
+		if(visitedMes===0){
+			visitedMes=1;
+			gamePrompt(["You've arrived at Mesnides. As you land, a representative of the Mesnidian people is there to greet you.","Welcome, traveler, to Mesnides"],mesSelect);
+		}else{
+			gamePrompt(["You've already been here!","Where to next?"],beginTravel);
+		}
+};
+
+ 
+//mesnides controller
+function mesSelect(){
+	gamePrompt(["How can we assist you?","Ask about (A)rtifact. Ask about other (P)lanets. (L)eave"],mesController);
+};
+
+//main mesnides controller
+function mesController(choice){
+	if(choice.toLowerCase() === "a" && artifactMes===0){
+
+	}else if(choice.toLowerCase() === "p" && mesPlanet===0){
+
+	}else if(choice.toLowerCase() === "l"){
+		gamePrompt("Roger that Captain!",beginTravel);
+
+	}else{
+		gamePrompt("Sorry Captain, we didn't understand your input or you have done this already. Please reselect",mesSelect);
+	}
+
+
 };
 
 

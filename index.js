@@ -132,9 +132,11 @@ function mesSelect(){
 //main mesnides controller
 function mesController(choice){
 	if(choice.toLowerCase() === "a" && artifactMes===0){
-
+		artifactMes=1;
+		gamePrompt(,);
 	}else if(choice.toLowerCase() === "p" && mesPlanet===0){
-
+		mesPlanet=1;
+		gamePrompt(,);
 	}else if(choice.toLowerCase() === "l"){
 		gamePrompt("Roger that Captain!",beginTravel);
 

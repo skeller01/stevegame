@@ -8,6 +8,7 @@ var vehicleFuel = 1000;
 var currentLocation ="aa";
 var artifacts = 0; 
 
+
 //add "visited" trackers to reset the system
 
 //start the game 

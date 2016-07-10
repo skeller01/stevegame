@@ -56,7 +56,7 @@ function beginTravel(){
 function systemSelection(option){
 	var check = option; 
 	if(currentLocation===check){
-		gamePrompt("Sorry Captain, You're already there. I will return you to the main menu to make another choice",beginTravel);
+		gamePrompt("Sorry Captain, You're already there or have been there. I will return you to the main menu to make another choice",beginTravel);
 	}else{
 		if(check.toLowerCase() === "e"){
 			vehicleFuel=(vehicleFuel-10);
@@ -114,10 +114,12 @@ var artifactMes=0;
 var mesArtifact = 0; 
 var mesPlanet = 0; 
 
+
 //Mesnides Starter
 function goToMesnides(){
 		if(visitedMes===0){
 			visitedMes=1;
+			// artifacts=1;
 			gamePrompt(["You've arrived at Mesnides. As you land, a representative of the Mesnidian people is there to greet you.","Welcome, traveler, to Mesnides"],mesSelect);
 		}else{
 			gamePrompt(["You've already been here!","Where to next?"],beginTravel);
@@ -134,15 +136,81 @@ function mesSelect(){
 function mesController(choice){
 	if(choice.toLowerCase() === "a" && artifactMes===0){
 		artifactMes=1;
-		gamePrompt(,);
+		artifacts=1;
+		gamePrompt(["Here, take this Myoin Horn, an ancient Mesnidian instrument.","Myoin Hord added to inventory"],mesSelect);
 	}else if(choice.toLowerCase() === "p" && mesPlanet===0){
 		mesPlanet=1;
-		gamePrompt(,);
+		gamePrompt("Well, Laplides suffered from atomic war and has been uninhabited for centuries. You would do well to avoid it on your journey.",mesSelect);
 	}else if(choice.toLowerCase() === "l"){
 		gamePrompt("Roger that Captain!",beginTravel);
 
 	}else{
 		gamePrompt("Sorry Captain, we didn't understand your input or you have done this already. Please reselect",mesSelect);
+	}
+
+
+};
+
+//+++++++++++++++++++++++++++++++++++++++These are the story functions 
+//***********************************************Laplides
+//Laplides variables 
+var visitedLap = 0;
+// var artifactLsp=0;
+// var mesArtifact = 0; 
+// var lapPlanet = 0; 
+
+
+//Laplides Starter
+function goToLaplides(){
+		if(visitedLap===0){
+			visitedLap=1;
+			// artifacts=1;
+			gamePrompt("You enter orbit around Laplides. Looking down at the planet, you see signs of atomic war and realize there is no option but to turn around.",beginTravel);
+		}else{
+			gamePrompt(["You've already been here!","Where to next?"],beginTravel);
+		}
+};
+
+//+++++++++++++++++++++++++++++++++++++++These are the story functions 
+//***********************************************Kiyturn
+//Kiyturn variables 
+var visitedKiy = 0;
+var artifactKiy=0;
+var kiyArtifact = 0; 
+var kiyPlanet = 0; 
+
+
+//Kiyturn Starter
+function goToKiyturn(){
+		if(visitedKiy===0){
+			visitedKiy=1;
+			// artifacts=1;
+			gamePrompt(["You've arrived at Mesnides. As you land, a representative of the Mesnidian people is there to greet you.","Welcome, traveler, to Mesnides"],kiySelect);
+		}else{
+			gamePrompt(["You've already been here!","Where to next?"],beginTravel);
+		}
+};
+
+ 
+//Kiyturn controller
+function kiySelect(){
+	gamePrompt(["How can we assist you?","Ask about (A)rtifact. Ask about other (P)lanets. (L)eave"],kiyController);
+};
+
+//main Kiyturn controller
+function kiyController(choice){
+	if(choice.toLowerCase() === "a" && artifactKiy===0){
+		artifactKiy=1;
+		artifacts=1;
+		gamePrompt(["Here, take this Myoin Horn, an ancient Mesnidian instrument.","Myoin Hord added to inventory"],kiySelect);
+	}else if(choice.toLowerCase() === "p" && kiyPlanet===0){
+		kiyPlanet=1;
+		gamePrompt("Well, Laplides suffered from atomic war and has been uninhabited for centuries. You would do well to avoid it on your journey.",kiySelect);
+	}else if(choice.toLowerCase() === "l"){
+		gamePrompt("Roger that Captain!",beginTravel);
+
+	}else{
+		gamePrompt("Sorry Captain, we didn't understand your input or you have done this already. Please reselect",kiySelect);
 	}
 
 

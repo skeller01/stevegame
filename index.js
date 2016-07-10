@@ -53,55 +53,69 @@ function beginTravel(){
 	"Please make selection? Type in the letter between the ()'s"],systemSelection)
 };
 
+
+// ********** Overall game controller for moving around 
+// We install our game loss system in here as well 
 function systemSelection(option){
 	var check = option; 
-	if(currentLocation===check){
-		gamePrompt("Sorry Captain, You're already there or have been there. I will return you to the main menu to make another choice",beginTravel);
-	}else{
-		if(check.toLowerCase() === "e"){
-			vehicleFuel=(vehicleFuel-10);
-			currentLocation="e" ;
-			gamePrompt("Flying to Earth...You used 10 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToEarth);
+	if(vehicleFuel<=0){
+		gameOverLose();
+	}
 
-		}else if(check.toLowerCase() === "m"){
+	else{
+
+
+	if(currentLocation===check){
+			gamePrompt("Sorry Captain, You're already there or have been there. I will return you to the main menu to make another choice",beginTravel);
+			}
+
+	else{
+	
+			if(check.toLowerCase() === "e"){
+				vehicleFuel=(vehicleFuel-10);
+				currentLocation="e" ;
+				gamePrompt("Flying to Earth...You used 10 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToEarth);
+			}
+		else if(check.toLowerCase() === "m"){
 			//need to add a 'visited' conditional
 			vehicleFuel=(vehicleFuel-20);
 			currentLocation="m" ;
-			gamePrompt("Flying to Mesnides...You used 20 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.", goToMesnides);
-
-		}else if(check.toLowerCase() === "l"){
+				gamePrompt("Flying to Mesnides...You used 20 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.", goToMesnides);
+			}
+		else if(check.toLowerCase() === "l"){
 			vehicleFuel=(vehicleFuel-50);
 			currentLocation="l" ;
 			gamePrompt("Flying to Laplides...You used 50 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToLaplides);
-			
-		}else if(check.toLowerCase() === "k"){
+			}
+		else if(check.toLowerCase() === "k"){
 			vehicleFuel=(vehicleFuel-120);
 			currentLocation="k" ;
 			gamePrompt("Flying to Kiyturn...You used 120 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToKiyturn);
-			
-		}else if(check.toLowerCase() === "a"){
+			}
+		else if(check.toLowerCase() === "a"){
 			vehicleFuel=(vehicleFuel-25);
-			currentLocation="a" ;
+			currentLocation="a";
 			gamePrompt("Flying to Aenides...You used 25 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToAenides);
-			
-		}else if(check.toLowerCase() === "c"){
+			}
+		else if(check.toLowerCase() === "c"){
 			vehicleFuel=(vehicleFuel-200);
 			currentLocation="c" ;
 			gamePrompt("Flying to Cramuthea...You used 200 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToCramuthea);
-			
-		}else if(check.toLowerCase() === "s"){
+			}
+		else if(check.toLowerCase() === "s"){
 			vehicleFuel=(vehicleFuel-400);
 			currentLocation="s" ;
 			gamePrompt("Flying to Smeon T9Q...You used 400 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToSmeon);
-			
-		}else if(check.toLowerCase() === "g"){
+			}
+		else if(check.toLowerCase() === "g"){
 			vehicleFuel=(vehicleFuel-85);
 			currentLocation="g" ;
 			gamePrompt("Flying to Gleshan 7Z9...You used 85 gallons of gas. The "+ vehicleName +" now has "+vehicleFuel+ " gallons.",goToGleshan);
-			
-		}else{
+			}
+		else{
 			gamePrompt("Sorry Captain, I did not understand you. I will return you to the main menu",beginTravel);
 		}
+	}
 	}
 };
 
@@ -226,7 +240,7 @@ var visitedAen= 0;
 
 
 //Aenides Starter
-function goToAenlides(){
+function goToAenides(){
 		if(visitedAen===0){
 			visitedAen=1;
 			// artifacts=1;
@@ -283,7 +297,7 @@ function goToSmeon(){
  
 //Smeon controller
 function SmeonSelect(){
-	gamePrompt(["How can we assist you?","Ask about (A)rtifact. Ask about other (P)lanets. (L)eave"],smeonController);
+	gamePrompt(["How can we assist you?","Ask about (A)rtifact. Ask about other (P)lanets. (L)eave"],SmeonController);
 };
 
 //main Smeon controller
@@ -308,19 +322,19 @@ function SmeonController(choice){
 //+++++++++++++++++++++++++++++++++++++++These are the story functions 
 //***********************************************Gleshan
 //Gleshan variables 
-var visitedSmeon = 0;
-var artifactSmeon=0;
-var SmeonArtifact = 0; 
-var SmeonPlanet = 0; 
+var visitedGleshan = 0;
+var artifactGleshan=0;
+var gleshanArtifact = 0; 
+var gleshanPlanet = 0; 
 
 
 //Gleshan Starter
-function goToSmeon(){
-		if(visitedSmeon===0){
-			visitedSmeon=1;
-			vehicleFuel=vehicleFuel+100;
+function goToGleshan(){
+		if(visitedGleshan===0){
+			visitedGleshan=1;
+			// vehicleFuel=vehicleFuel+100;
 			// artifacts=1;
-			gamePrompt("The Cramuthean people, living on Smeon T9Q, are a friendly people that give you some fuel (+100 gallons) when you arrive.",SmeonSelect);
+			gamePrompt("Gleshan 7Z9 is a poor country.",GleshanSelect);
 		}else{
 			gamePrompt(["You've already been here!","Where to next?"],beginTravel);
 		}
@@ -328,28 +342,61 @@ function goToSmeon(){
 
  
 //Gleshan controller
-function SmeonSelect(){
-	gamePrompt(["How can we assist you?","Ask about (A)rtifact. Ask about other (P)lanets. (L)eave"],smeonController);
+function GleshanSelect(){
+	gamePrompt(["How can we assist you?","Ask about (A)rtifact. Ask about other (P)lanets. (L)eave"],GleshanController);
 };
 
 //main Gleshan controller
-function SmeonController(choice){
-	if(choice.toLowerCase() === "a" && artifactSmeon===0){
-		artifactSmeon=1;
-		artifacts=artifacts+1;
-		gamePrompt(["they also give you a dried Cramun Flower from their home planet.","Cramun Flower added to inventory."],SmeonSelect);
-	}else if(choice.toLowerCase() === "p" && SmeonPlanet===0){
-		SmeonPlanet=1;
-		gamePrompt("they warn you that the people of Aenides once tried to take over their home planet by force.",SmeonSelect);
+function GleshanController(choice){
+	if(choice.toLowerCase() === "a" && artifactGleshan===0){
+		// artifactGleshan=1;
+		// artifacts=artifacts+1;
+		gamePrompt(["sorry, we don't have any artifacts"],GleshanSelect);
+	}else if(choice.toLowerCase() === "p" && GleshanPlanet===0){
+		GleshanPlanet=1;
+		gamePrompt("a wealthy people, the Cramuthean, once visited Gleshan 7Z9.",GleshanSelect);
 	}else if(choice.toLowerCase() === "l"){
 		gamePrompt("Roger that Captain!",beginTravel);
 
 	}else{
-		gamePrompt("Sorry Captain, we didn't understand your input or you have done this already. Please reselect",SmeonSelect);
+		gamePrompt("Sorry Captain, we didn't understand your input or you have done this already. Please reselect",GleshanSelect);
 	}
 
 
 };
+
+//+++++++++++++++++++++++++++++++++++++++These are the story functions 
+//***********************************************Earth
+//Earth variables 
+// var visitedGleshan = 0;
+// var artifactGleshan=0;
+// var gleshanArtifact = 0; 
+// var gleshanPlanet = 0; 
+
+
+//Earth Starter
+function goToEarth(){
+		if(artifacts===3){
+			// visitedGleshan=1;
+			// vehicleFuel=vehicleFuel+100;
+			// artifacts=1;
+			gamePrompt("You have "+artifacts+" artifacts. You win the game!",gameOverWin);
+		}else{
+			vehicleFuel=vehicleFuel+10;
+			gamePrompt("You have "+artifacts+" artifacts. You have been given 10 fuel. Come back with three artifacts and you win the game",beginTravel);
+		}
+};
+
+ //Initiate the win sequence 
+function gameOverWin(){
+
+	gamePrompt("Press and hold cntrl+C to exit the game",gameOverWin);
+}
+
+// losing the game 
+function gameOverLose(){
+	gamePrompt("You are out of gas and lose the game. Start over",startGame)
+}
 
 //call a function so we can begin the game 
 startGame();

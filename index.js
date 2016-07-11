@@ -325,7 +325,7 @@ function SmeonController(choice){
 var visitedGleshan = 0;
 var artifactGleshan=0;
 var gleshanArtifact = 0; 
-var gleshanPlanet = 0; 
+var GleshanPlanet = 0; 
 
 
 //Gleshan Starter
